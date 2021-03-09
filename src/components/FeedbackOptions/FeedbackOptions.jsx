@@ -2,19 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../FeedbackOptions/FeedbackOptions.module.css';
 
-const FeedbackOptions = ({ options }) => {
-  const { onGood, onNeutral, onBad } = options;
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  const items = Object.keys(options);
   return (
     <>
-      <button className={styles.button} type="button" onClick={onGood}>
-        Good
-      </button>
-      <button className={styles.button} type="button" onClick={onNeutral}>
-        Neutral
-      </button>
-      <button className={styles.button} type="button" onClick={onBad}>
-        Bad
-      </button>
+      {items.map(item => (
+        <button
+          className={styles.button}
+          type="button"
+          key={item}
+          name={item}
+          onClick={onLeaveFeedback}
+        >
+          {item}
+        </button>
+      ))}
     </>
   );
 };
